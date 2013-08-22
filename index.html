@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Lungo 2 - HTML5 Cross-Device Framework</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="cleartype" content="on">
+
+    <!-- iPhone -->
+    <link href="images/icon-57.png" sizes="57x57" rel="apple-touch-icon">
+    <link href="images/startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+
+    <!-- iPhone (Retina) -->
+    <link href="images/icon-114.png" sizes="114x114" rel="apple-touch-icon">
+    <link href="images/startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <!-- iPhone 5 -->
+    <link href="images/startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <!-- iPad -->
+    <link href="images/icon-72.png" sizes="72x72" rel="apple-touch-icon">
+    <link href="images/startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+    <link href="images/startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+
+    <!-- iPad (Retina) -->
+    <link href="images/icon-144.png" sizes="144x144" rel="apple-touch-icon">
+    <link href="images/startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: portrait)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+    <link href="images/startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px)
+             and (orientation: landscape)
+             and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+    <!-- Lungo - Stylesheets -->
+    <link rel="stylesheet" href="components/lungo/lungo.css">
+    <link rel="stylesheet" href="components/lungo/lungo.icon.css">
+    <link rel="stylesheet" href="components/lungo/lungo.theme.css">
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+</head>
+<body>
+    <section id="splash" data-transition="slide">
+        <article class="active splash" id="login-article">
+            <img src="http://cdn.tapquo.com/lungo/logo.png" class="logo"/>
+            <div class="form">
+                <fieldset class="radius-top" data-icon="user">
+                    <input type="text" placeholder="Your username" id="login-usuario" value="">
+                </fieldset>
+                <fieldset class="radius-bottom shadow" data-icon="lock">
+                    <input type="password" placeholder="Your password" id="contrasena-usuario" value="">
+                </fieldset>
+                <br/>
+                <button class="anchor" data-icon="lock" data-icon="user" data-label="Login"></button>
+            </div>
+            <span class="copyright text thin">Copyright (C) 2013 - <span class="text bold">ChalaSoft</span></span>
+        </article>
+    </section>
+    <!-- Esta es la primera section -->
+    <section id="main-app-traker" data-transition="slide">
+        <header data-title="Traker">
+            <nav class="on-right">
+                <button data-view-section="splash" data-icon="user" data-label="Salir"></button>
+            </nav>
+        </header>
+        <nav data-control="groupbar">
+            <a href="#" data-view-article="layout-art1" data-label="Profile" class="active"></a>
+            <a href="#" data-view-article="layout-art2" data-label="Inbox" data-count="19"></a>
+            <a href="#" data-view-article="article-mapa" data-label="Mapa"></a>
+            <a href="#" data-view-article="layout-art4" data-label="Settings"></a>
+        </nav>
+        <article id="layout-art1"><div class="empty">
+                <span class="icon user"></span>
+                <strong>Profile Empty</strong>
+                <small>When you back a project or follow a friend, their activity will show up here.</small>
+                <button class="anchor" data-label="Please update..."></button>
+            </div>
+        </article>
+        <article id="layout-art2">
+            <div class="empty">
+                <span class="icon inbox"></span>
+                <strong>Inbox Empty</strong>
+                <small>When you back a project or follow a friend, their activity will show up here.</small>
+            </div>
+        </article>
+        <article id="article-mapa" class="indented scroll">
+            <div class="layout">
+                <div id="canvas_map" data-layout="primary" >
+                </div>
+            </div>
+        </article>
+        <article id="layout-art4">
+            <div class="empty">
+                <span class="icon cog"></span>
+                <strong>Settings Empty</strong>
+                <small>When you back a project or follow a friend, their activity will show up here.</small>
+            </div>
+        </article>
+
+        <footer>
+            <nav>
+                <a href="#" data-view-article="layout-art1" data-icon="user" class="active"></a>
+                <a href="#" data-view-article="layout-art2" data-icon="inbox" data-count="80"></a>
+                <a href="#" data-view-article="article-mapa" data-icon="comments"></a>
+                <a href="#" data-view-article="layout-art4" data-icon="cog"></a>
+            </nav>
+        </footer>
+    </section>
+
+    <!-- Lungo - Dependencies -->
+    <script src="components/quojs/quo.js"></script>
+    <script src="components/lungo/lungo.js"></script>
+    <!-- Lungo - Sandbox App -->
+    <script src="app/app.js"></script>
+    <script src="app/events.js"></script>
+    <script src="app/services.js" ></script>
+    <script src="app/data.js" ></script>
+    <script src="app/geolocalization.js" ></script>
+</body>
+</html>
