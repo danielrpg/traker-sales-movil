@@ -1,8 +1,9 @@
 var url = "http://localhost:3000/";
+var codigo_operador;
 App.Services=(function(lng, app, undefined){
 	// Metodo que permite loguear en el sistema
 	var loginUsuario = function(login, password){
-		lng.Service.get(url+'loginUsuario/'+login+'/'+password, {}, responseLogin, "json");
+		lng.Service.get(url+'loginOperador/'+login+'/'+password, {}, responseLogin, "json");
 	};
 	// Esta es la respuesta cuando es true
 	var responseLogin = function(res){
@@ -10,6 +11,7 @@ App.Services=(function(lng, app, undefined){
 		if(res.complet){
 			lng.Router.section("main-app-traker");
 			app.Geolocalization.initGeo();
+			codigo_operador = res.codigo_operador;
 		}else{
 			lng.Notification.error(
 			    "Error",                      //Title
@@ -27,7 +29,7 @@ App.Services=(function(lng, app, undefined){
 	};
     // Enviar los datos al servidor latitude y longitude
     var setCurrentPos = function(latitude, longitude){
-    	lng.Service.post(url+"setCurrentPosition", {usr:$$('#login-usuario').val(),pass:$$('#contrasena-usuario').val(),latitude:latitude, longitude:longitude}, successReponse, "json");
+    	lng.Service.post(url+"setCurrentPosition", {codigo_operador:codigo_operador,latitude:latitude, longitude:longitude}, successReponse, "json");
     };
     var successReponse = function(response){
     	console.log(response);

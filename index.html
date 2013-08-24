@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Lungo 2 - HTML5 Cross-Device Framework</title>
+    <title>TRAKER SALESv0.1</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="HandheldFriendly" content="True">
@@ -56,10 +56,10 @@
             <img src="http://cdn.tapquo.com/lungo/logo.png" class="logo"/>
             <div class="form">
                 <fieldset class="radius-top" data-icon="user">
-                    <input type="text" placeholder="Your username" id="login-usuario" value="">
+                    <input type="text" placeholder="Login de usuario" id="login-usuario" value="">
                 </fieldset>
                 <fieldset class="radius-bottom shadow" data-icon="lock">
-                    <input type="password" placeholder="Your password" id="contrasena-usuario" value="">
+                    <input type="password" placeholder="Contraseña" id="contrasena-usuario" value="">
                 </fieldset>
                 <br/>
                 <button class="anchor" data-icon="lock" data-icon="user" data-label="Login"></button>
@@ -94,11 +94,14 @@
                 <small>When you back a project or follow a friend, their activity will show up here.</small>
             </div>
         </article>
-        <article id="article-mapa" class="indented scroll">
-            <div class="layout">
-                <div id="canvas_map" data-layout="primary" >
-                </div>
-            </div>
+        <article id="article-mapa" class="list scroll indented active">
+            <ul style="height:80%;">
+                <li class="accept">
+                    <strong>Posicion Actual</strong>
+                </li>
+                <li id="canvas_map">
+                </li>
+            </ul>
         </article>
         <article id="layout-art4">
             <div class="empty">

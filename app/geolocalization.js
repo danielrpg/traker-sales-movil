@@ -11,6 +11,7 @@ App.Geolocalization = (function(lng, app, undefined){
 		app.Services.setCurrentPos(latitude,longitude);
 		$$('#canvas_map').style("height","100%");
 		$$('#canvas_map').style("width","100%");
+		$$('#canvas_map').style("margin","0 auto");
 		var coords = new google.maps.LatLng(latitude, longitude);
 		var options = {
 			zoom:16,
