@@ -2,7 +2,21 @@ App.Geolocalization = (function(lng, app, undefined){
 	var latitude;
 	var longitude;
 	var initGeolocalization = function(){
-		navigator.geolocation.getCurrentPosition(showMap, errorMap)
+		if(navigator.geolocation){
+			var opt = {timeout:3000};
+			navigator.geolocation.watchPosition(showMap, errorMap, opt);	
+		}else{
+			lng.Notification.error(
+			    "Error",                      //Title
+			    "No soporta la geolocalizacion por favor instalar un navegador que soporte.",     //Description
+			    "remove",                     //Icon
+			    7,                            //Time on screen
+			    afterExecuteError             //Callback function
+			);
+		}
+	};
+	var afterExecuteError = function(err){
+		console.log('No soporta el navegador HTML5.');
 	};
 	var showMap = function (position){
 		latitude = position.coords.latitude;
