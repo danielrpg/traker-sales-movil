@@ -1,4 +1,4 @@
-var url = "http://localhost:3000/";
+var url = "http://10.0.0.4:3000/";
 var codigo_operador;
 App.Services=(function(lng, app, undefined){
 	var socket = io.connect(url);
