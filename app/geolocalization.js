@@ -1,12 +1,19 @@
 App.Geolocalization = (function(lng, app, undefined){
 	var latitude;
 	var longitude;
-	var initGeolocalization = function(){
+	var codigoUsuario;
+	var loginUsuario;
+	var socket;
+	var timer=setInterval()
+	var initGeolocalization = function(codigo, login, sock){
+		codigoUsuario = codigo;
+		loginUsuario = login;
+		socket = sock;
 		$$('#canvas_map').style("height","80%");
 		$$('#canvas_map').style("width","100%");
 		if(navigator.geolocation){
 			lng.Notification.show();
-			var options = {timeout: 10000, maximumAge: 11000, enableHighAccuracy: true };
+			var options = {enableHighAccuracy:true, maximumAge:30000, timeout:27000};
 			navigator.geolocation.watchPosition(showMap, errorMap, options);
 		}else{
 			lng.Notification.error(
@@ -18,7 +25,6 @@ App.Geolocalization = (function(lng, app, undefined){
 			);
 		}
 	};
-
 	var afterExecuteError = function(){
 		//document.getElementById('current').innerHTML="Couldn't get location"
 	};
@@ -26,6 +32,19 @@ App.Geolocalization = (function(lng, app, undefined){
 		latitude = position.coords.latitude;
 		longitude = position.coords.longitude;
 		console.log(latitude+","+longitude);
+		socket.emit('nuevoUsuario', {login:loginUsuario,codigo_op:codigoUsuario, latitude:latitude, longitude:longitude}, function(data){
+			if(data){
+				console.log('El usuario se ha añadido correctamente');
+			}else{
+				lng.Notification.error(
+				    "Error",                      //Title
+				    "El login de usuario ya esta siendo usado por otro",     //Description
+				    "remove",                     //Icon
+				    7,                            //Time on screen
+				    afterExecuteError             //Callback function
+				);
+			}
+		});
 		app.Services.setCurrentPos(latitude,longitude);
 		var pos=new google.maps.LatLng(latitude, longitude);
 		var opciones = {
@@ -42,6 +61,10 @@ App.Geolocalization = (function(lng, app, undefined){
 		var mak = new google.maps.Marker(opcMark);
 		lng.Notification.hide();
 	};
+	// Despues del error 
+	var afterExecuteError = function(){
+
+	};
 	var errorMap = function(){
 		lng.Notification.error(
 		    "Error",                      //Title
@@ -51,7 +74,17 @@ App.Geolocalization = (function(lng, app, undefined){
 		    afterExecuteError             //Callback function
 		);
 	};
+
+	var getLatitude = function(){
+		return latitude;
+	};
+
+	var getLongitude = function(){
+		return longitude;
+	};
 	return {
-		initGeo : initGeolocalization
+		initGeo : initGeolocalization,
+		getLatitude : getLatitude,
+		getLongitude : getLongitude
 	}
 })(Lungo, App);

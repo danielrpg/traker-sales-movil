@@ -18,13 +18,8 @@ App.Events = (function(lng, app){
 			    despuesEjcucionError             //Callback function
 			);
     	}else{
-    		lng.Notification.success(
-			    "Success",                  //Title
-			    "Usuario correcto",     //Description
-			    "check",                    //Icon
-			    1,                          //Time on screen
-			    ejecutarUsuarioCorrecto           //Callback function
-			);
+    		lng.Notification.show();
+			ejecutarUsuarioCorrecto();
     	}
     });
 	/**  Metodo que permite verificar el usuario**/

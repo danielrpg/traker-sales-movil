@@ -8,13 +8,11 @@ App.Services=(function(lng, app, undefined){
 	};
 	// Esta es la respuesta cuando es true
 	var responseLogin = function(res){
-		//console.log(res);
 		if(res.complet){
 			lng.Router.section("main-app-traker");
-			app.Geolocalization.initGeo();
+			app.Geolocalization.initGeo(res.codigo_operador,$$('#login-usuario').val(), socket);
 			codigo_operador = res.codigo_operador;
-			//console.log(socket);
-			socket.emit('nuevoUsuario', {login:$$('#login-usuario').val(), codigo_op:codigo_operador}, function(data){
+			/*socket.emit('nuevoUsuario', {login:, codigo_op:codigo_operador, latitud:app.Geolocalization.getLatitude(),longitude:app.Geolocalization.getLongitude()}, function(data){
 				if(data){
 					console.log('El usuario se ha añadido correctamente');
 				}else{
@@ -26,7 +24,7 @@ App.Services=(function(lng, app, undefined){
 					    afterExecuteError             //Callback function
 					);
 				}
-			});
+			});*/
 		}else{
 			lng.Notification.error(
 			    "Error",                      //Title
